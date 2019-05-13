@@ -3,6 +3,8 @@
 # Basic
 import sys
 import os
+import molssi_devops as md
+import pytest
 # Testing
 # import pdb
 # import time, timeit
@@ -28,22 +30,25 @@ Description:
 """
 
 
-def title_case(title_string):
-    """!Change string so first letter of every word is upper case and the other letters are lowercase.
-
-    @param title_string: TODO
+def test_title_case():
+    """! Test title case function
     @return: TODO
 
     """
-    if not isinstance(title_string, str):
-        raise TypeError(
-            "Invalid, type {} - Input string".format(type(title_string)))
-    words = title_string.split()
-    title = ""
-    for word in words:
-        title += word[0].upper() + word[1:].lower() + " "
+    test_str = "THIS IS A STRING"
+    title = md.util.title_case(test_str)
+    assert title == "This Is A String "
 
-    return title
+
+@pytest.mark.my_test
+def test_title_case_error():
+    """! Test title case function
+    @return: TODO
+
+    """
+    test_str = ['THIS', 'IS', 'A', 'STRING']
+    with pytest.raises(TypeError):
+        title = md.util.title_case(test_str)
 
 
 ##########################################
